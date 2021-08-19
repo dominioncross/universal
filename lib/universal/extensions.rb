@@ -40,6 +40,9 @@ class Array
   def sanitize
     self.map{|v| v.to_s.strip.sanitize}
   end
+  def titleize
+    self.map{|a| [a.to_s.titleize, a]}
+  end
 end
 class Symbol
   def titleize
