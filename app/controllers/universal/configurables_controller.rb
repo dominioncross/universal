@@ -2,7 +2,7 @@ require_dependency "universal/application_controller"
 
 module Universal
   class ConfigurablesController < Universal::ApplicationController
-    before_filter :find_model
+    before_action :find_model
 
     def create
       @model.set_config!(params[:key], params[:value].encode('UTF-16le', invalid: :replace, replace: '').encode('UTF-8'), nil, params[:name]) if @model

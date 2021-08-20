@@ -3,7 +3,7 @@ require_dependency "universal/application_controller"
 module Universal
   class AttachmentsController < ApplicationController
     
-    before_filter :find_subject, :find_parent
+    before_action :find_subject, :find_parent
     
     def index
       if !@subject.nil?
