@@ -23,7 +23,7 @@ module Universal
           end
         end
         def remove_tag!(tag)
-          self.pull(Universal::Configuration.field_name_taggable => tag.to_s.parameterize('_'))
+          self.pull(Universal::Configuration.field_name_taggable => tag.to_s)
         end
 
       end
