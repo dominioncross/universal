@@ -5,9 +5,9 @@ module Universal
       
       included do
         include Mongoid::Document
-    
+
         store_in collection: Universal::Configuration.country_collection
-        
+
         field :code
         field :code_3
         field :name
@@ -34,4 +34,3 @@ module Universal
       end
     end
   end
-end

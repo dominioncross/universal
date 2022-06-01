@@ -8,9 +8,9 @@ module Universal
         include Universal::Concerns::Archivable
         include Universal::Concerns::Polymorphic
         include Universal::Concerns::Kind
-        
+
         store_in collection: 'auto_flags'
-        
+
         field :flag
         field :date, type: Date
         field :parent_type
@@ -52,4 +52,3 @@ module Universal
       
     end
   end
-end

@@ -9,9 +9,9 @@ module Universal
         include Universal::Concerns::Polymorphic
         include Universal::Concerns::Scoped
         include Universal::Concerns::Status
-        
+
         store_in collection: 'universal_situations'
-        
+
         field :n, as: :notes
         field :ea, as: :expires_at, type: DateTime
         
@@ -36,4 +36,3 @@ module Universal
 
     end
   end
-end

@@ -10,8 +10,9 @@ module Universal
         include Universal::Concerns::Kind
         include Universal::Concerns::Status
         include Universal::Concerns::Scoped
+
         store_in collection: 'comments'
-        
+
         field :a, as: :author
         field :c, as: :content
         field :hb, as: :html_body
@@ -61,4 +62,3 @@ module Universal
 
     end
   end
-end

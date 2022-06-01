@@ -10,17 +10,9 @@ module Universal
         field :k, as: :key
         field :n, as: :name
         field :v, as: :value
-
-#         validates :key, presence: true
         
         embedded_in :model
       end
-
-      ####################################################################### ClassMethods
-      module ClassMethods
-      end
-      ####################################################################### End ClassMethods
-
     end
   end
 end

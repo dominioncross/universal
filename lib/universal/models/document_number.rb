@@ -6,8 +6,9 @@ module Universal
       included do
         include Mongoid::Document
         include Universal::Concerns::Kind
+
         store_in collection: 'document_numbers'
-        
+
         #field :t, as: :type
         field :n, as: :number, type: Integer
         field :p, as: :prefix
@@ -22,7 +23,6 @@ module Universal
         
         #return the current next invoice number, and increment the model for the next upcoming invoice
         def generate!(kind, prefix=nil, scope=nil)
-          logger.debug "@@@@@@@@@@@@@@@@@@@@ generate new document number!"
           #find the matching number
           prefix ||= kind[0,1].upcase
           number = ::Universal::DocumentNumber.find_by(kind: kind, prefix: prefix, scope: scope)
@@ -39,4 +39,3 @@ module Universal
       end
     end
   end
-end
