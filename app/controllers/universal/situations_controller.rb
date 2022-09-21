@@ -3,8 +3,8 @@ require_dependency "universal/application_controller"
 module Universal
   class SituationsController < Universal::ApplicationController
     
-    before_filter :find_subject
-    before_filter :find_scope
+    before_action :find_subject
+    before_action :find_scope
     
     def create
       if @subject and @scope
