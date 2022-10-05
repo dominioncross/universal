@@ -6,7 +6,7 @@ module Universal
     def create
       @model = embedder
       @model.set_function!(params[:function], params[:checked]) if @model
-      render text: ''
+      render plain: ''
     end
 
     private
