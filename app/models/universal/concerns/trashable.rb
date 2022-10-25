@@ -4,7 +4,8 @@ module Universal
       extend ActiveSupport::Concern
 
       included do
-        field :_trs, as: :trashed, type: Boolean, default: false
+        field :_trs, as: :trashed, type: Mongoid::Boolean, default: false
+
         default_scope ->(){where(trashed: false)}
         scope :trashed, ->(){where(trashed: true)}
         scope :not_trashed, ->(){where(trashed: false)}

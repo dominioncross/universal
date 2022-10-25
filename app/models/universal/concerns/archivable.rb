@@ -3,7 +3,7 @@ module Universal
     module Archivable
       extend ActiveSupport::Concern
       included do
-        field :_ach, as: :archived, type: Boolean, default: false
+        field :_ach, as: :archived, type: Mongoid::Boolean, default: false
 
         default_scope ->(){where(archived: false)}
         scope :archived, ->(){where(archived: true)}
