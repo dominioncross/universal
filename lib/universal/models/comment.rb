@@ -16,8 +16,8 @@ module Universal
         field :c, as: :content
         field :hb, as: :html_body
         field :w, as: :when, type: DateTime
-        field :sg, as: :system_generated, type: Boolean, default: false
-        field :ic, as: :incoming, type: Boolean, default: false
+        field :sg, as: :system_generated, type: Mongoid::Boolean, default: false
+        field :ic, as: :incoming, type: Mongoid::Boolean, default: false
         field :sn, as: :subject_name
         field :sk, as: :subject_kind
         
