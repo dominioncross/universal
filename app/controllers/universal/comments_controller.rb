@@ -1,4 +1,4 @@
-require_dependency "universal/application_controller"
+require_dependency 'universal/application_controller'
 
 module Universal
   class CommentsController < Universal::ApplicationController
@@ -6,9 +6,17 @@ module Universal
 
     def index
       @model = find_model
-      render json: @model.comments.map{|c| {id: c.id.to_s, kind: c.kind.to_s, author: (c.user.nil? ? c.author : c.user.name), content: c.content, when: c.when}}
+      render json: @model.comments.map { |c|
+                     {
+                       id: c.id.to_s,
+                       kind: c.kind.to_s,
+                       author: (c.user.nil? ? c.author : c.user.name),
+                       content: c.content.presence || c.html_body,
+                       when: c.when
+                     }
+                   }
     end
-    
+
     def create
       @model = find_model
       @comment = @model.comments.new content: params[:content]
@@ -19,16 +27,22 @@ module Universal
       else
         logger.debug @comment.errors.to_json
       end
-      render json: @model.comments.map{|c| {id: c.id.to_s, author: (c.user.nil? ? c.author : c.user.name), content: c.content, when: c.when}}
+      render json: @model.comments.map { |c|
+                     {
+                       id: c.id.to_s,
+                       author: (c.user.nil? ? c.author : c.user.name),
+                       content: c.content.presence || c.html_body,
+                       when: c.when
+                     }
+                   }
     end
 
     private
+
     def find_model
-      if params[:subject_type]
-        return params[:subject_type].classify.constantize.unscoped.find params[:subject_id]
-      end
-      return nil
+      return params[:subject_type].classify.constantize.unscoped.find params[:subject_id] if params[:subject_type]
+
+      nil
     end
-    
   end
 end
