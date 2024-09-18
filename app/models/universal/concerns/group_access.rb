@@ -93,7 +93,8 @@ module Universal
           group_codes = group_codes.map{|c| c.to_s}
           groups = self.universal_user_groups
           groups = groups.select{|g| group_codes.include?(g.code)}
-          return groups.any?
+
+          groups.any?
         end
 
       end

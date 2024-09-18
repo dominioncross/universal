@@ -10,24 +10,23 @@ module Universal
 
         search_in Universal::Configuration.field_name_taggable
 
-        scope :tagged_with, ->(tag){where(tags: /\b#{tag.to_s}\b/i)}
+        scope :tagged_with, ->(tag) { where(tags: /\b#{tag}\b/i) }
 
         def tagged_with?(tag)
-          (!self.tags.nil? and self.tags.map{|t| t.downcase}.include?(tag.downcase.to_s))
+          (!tags.nil? and tags.map { |t| t.downcase }.include?(tag.downcase.to_s))
         end
 
         def tag!(tag)
-          if !self.tagged_with?(tag)
-            self.push(Universal::Configuration.field_name_taggable => tag.to_s)
-            self.save #to update the keywords
-          end
+          return if tagged_with?(tag)
+
+          push(Universal::Configuration.field_name_taggable => tag.to_s.downcase)
+          save # to update the keywords
         end
+
         def remove_tag!(tag)
-          self.pull(Universal::Configuration.field_name_taggable => tag.to_s)
+          pull(Universal::Configuration.field_name_taggable => tag.to_s.downcase)
         end
-
       end
-
     end
   end
 end
