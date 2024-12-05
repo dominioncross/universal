@@ -2,8 +2,8 @@ require_dependency 'universal/application_controller'
 
 module Universal
   class SituationsController < Universal::ApplicationController
-    before_action :find_subject
-    before_action :find_scope
+    before_action :find_subject, except: %i[destroy]
+    before_action :find_scope, except: %i[destroy]
 
     def create
       if @subject and @scope
@@ -19,6 +19,13 @@ module Universal
           render layout: false
         end
       end
+    end
+
+    def destroy
+      @sit = Universal::Situation.find(params[:id])
+      @sit&.destroy
+
+      render layout: false
     end
 
     private
